@@ -13,4 +13,7 @@ app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
 
+app.get('/', (req, res)=> {
+  res.send('howdy world')
+})
 
