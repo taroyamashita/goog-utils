@@ -1,3 +1,4 @@
+require('dotenv').config()
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -9,12 +10,14 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 // time.
 const TOKEN_PATH = 'token.json';
 
-// Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
-  // Authorize a client with credentials, then call the Google Sheets API.
-  authorize(JSON.parse(content), listMajors);
-});
+// // Load client secrets from a local file.
+// fs.readFile('credentials.json', (err, content) => {
+//   if (err) return console.log('Error loading client secret file:', err);
+//   // Authorize a client with credentials, then call the Google Sheets API.
+//   authorize(JSON.parse(content), listMajors);
+// });
+
+authorize(content=[], listMajors);
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -23,7 +26,15 @@ fs.readFile('credentials.json', (err, content) => {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
+//   const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const client_secret = process.env.GOOGLE_CLIENT_SECRET
+  const client_id = process.env.GOOGLE_CLIENT_ID
+  const redirect_uris = [ "urn:ietf:wg:oauth:2.0:oob", "http://localhost"]
+
+  console.log('secret is', client_secret)
+//   const client_secret= 
+//   const client_id = process.env.GOOG_CLIENT_ID
+  
   const oAuth2Client = new google.auth.OAuth2(
       client_id, client_secret, redirect_uris[0]);
 
