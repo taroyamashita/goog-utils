@@ -18,7 +18,7 @@ const TOKEN_PATH = 'token.json';
 // });
 
 authorize(content=[], listMajors);
-
+// random small change 2 
 //random small change 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
