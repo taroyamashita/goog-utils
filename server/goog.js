@@ -84,6 +84,7 @@ function getNewToken(oAuth2Client, callback) {
  */
 function listMajors(auth) {
   const sheets = google.sheets({version: 'v4', auth});
+//   console.log(sheets.spreadsheets)
   sheets.spreadsheets.values.get({
     spreadsheetId: '1gBneQacGkIAkUEdNrBbuu4Popt9NXLMSPlj4Is0Mcj8',
     range: 'Class Data!A2:E',
@@ -101,3 +102,7 @@ function listMajors(auth) {
     }
   });
 }
+
+// write to the google sheet;
+// create tool for developing different training templates
+
