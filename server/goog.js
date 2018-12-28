@@ -19,6 +19,7 @@ const TOKEN_PATH = 'token.json';
 
 authorize(content=[], listMajors);
 authorize(content=[], createSheet);
+authorize(content = [], updateSheet);
 // random small change 2 
 //random small change 
 /**
@@ -129,6 +130,28 @@ function createSheet(auth){
       });
 }
 
+function updateSheet(auth){
+
+    const sheets = google.sheets({version: 'v4', auth});
+     
+    sheets.spreadsheets.values.append({
+        spreadsheetId: '1dlYZPVm8cfm9kbSOTC3rPv0sNrBdSjBrsvIS2zKqTSw',
+        range: 'Sheet1',
+        valueInputOption: 'RAW',
+        insertDataOption: 'INSERT_ROWS',
+        resource: {
+          values: [
+            [new Date().toISOString(), "Some value", "Another value"]
+          ],
+        },
+        auth: auth
+      }, (err, response) => {
+        if (err) return console.error(err)
+        else {
+            console.log('sheet successfully updated');
+        }
+      })
+}
 
 
 // write to the google sheet;
