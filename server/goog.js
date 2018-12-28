@@ -18,6 +18,7 @@ const TOKEN_PATH = 'token.json';
 // });
 
 authorize(content=[], listMajors);
+authorize(content=[], createSheet);
 // random small change 2 
 //random small change 
 /**
@@ -46,6 +47,9 @@ function authorize(credentials, callback) {
     callback(oAuth2Client);
   });
 }
+
+
+
 
 /**
  * Get and store new token after prompting for user authorization, and then
@@ -103,6 +107,29 @@ function listMajors(auth) {
     }
   });
 }
+
+function createSheet(auth){
+
+    const resource = {
+        properties: {
+          title: "Egg Sheet"
+        },
+      };
+    const sheets = google.sheets({version: 'v4', auth});
+    sheets.spreadsheets.create({
+        resource,
+        fields: 'spreadsheetId',
+      }, (err, spreadsheet) =>{
+        if (err) {
+          // Handle error.
+          console.log(err);
+        } else {
+          console.log(`Spreadsheet ID: ${spreadsheet.spreadsheetId}`);
+        }
+      });
+}
+
+
 
 // write to the google sheet;
 // create tool for developing different training templates
