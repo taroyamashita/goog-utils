@@ -136,12 +136,12 @@ function updateSheet(auth){
      
     sheets.spreadsheets.values.append({
         spreadsheetId: '1dlYZPVm8cfm9kbSOTC3rPv0sNrBdSjBrsvIS2zKqTSw',
-        range: 'Sheet1',
+        range: 'Sheet1!A2',
         valueInputOption: 'RAW',
         insertDataOption: 'INSERT_ROWS',
         resource: {
           values: [
-            [new Date().toISOString(), "Some value", "Another value"]
+            [new Date().toISOString(), "Some new value", "Another value"]
           ],
         },
         auth: auth
@@ -151,8 +151,8 @@ function updateSheet(auth){
             console.log('sheet successfully updated');
         }
       })
-}
-
+}    
+// random commit 
 
 // write to the google sheet;
 // create tool for developing different training templates
