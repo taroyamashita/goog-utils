@@ -113,7 +113,7 @@ function createSheet(auth){
 
     const resource = {
         properties: {
-          title: "Egg Sheet"
+          title: "Haru Sheet"
         },
       };
     const sheets = google.sheets({version: 'v4', auth});
